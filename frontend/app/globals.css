@@ -1,0 +1,322 @@
+@import "tailwindcss";
+
+:root {
+  --background: #171717;
+  --foreground: #FFFFFF;
+  --surface-primary: #171717;
+  --surface-elevated: #4662ab;
+  --surface-glass: #4662ab33;
+  --surface-card: #c6daec;
+  --accent-primary: #4662ab;
+  --accent-muted: #c0d9ef;
+  --accent-soft: #c6daec;
+  --accent-subtle: #d2deea;
+  --accent-light: #e0f2fd;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #171717;
+    --foreground: #FFFFFF;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+}
+
+/* Improved typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* Better input and button styling */
+input, textarea, select {
+  transition: all 0.2s ease;
+}
+
+button {
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+/* Subtle improvements to scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(23, 23, 23, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(198, 218, 236, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(198, 218, 236, 0.5);
+}
+
+/* Mapbox GL CSS */
+@import 'mapbox-gl/dist/mapbox-gl.css';
+
+/* MapLibre GL CSS */
+@import 'maplibre-gl/dist/maplibre-gl.css';
+
+/* Mapbox popup styling */
+.mapboxgl-popup.expansi-popup .mapboxgl-popup-content {
+	background: #171717;
+	color: #FFFFFF;
+	border: 1px solid #c6daec66;
+	padding: 12px 14px 14px 14px;
+	border-radius: 12px;
+	box-shadow: 0 10px 34px rgba(0,0,0,0.7);
+	font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+}
+.mapboxgl-popup.expansi-popup .mapboxgl-popup-close-button {
+	color: #FFFFFF;
+	background: #171717;
+	border: 1px solid #c6daec66;
+	border-radius: 9999px;
+	width: 22px; height: 22px; line-height: 18px; text-align: center; top: 6px; right: 6px;
+}
+.mapboxgl-popup.expansi-popup .mapboxgl-popup-tip {
+	border-top-color: #171717;
+	border-bottom-color: #171717;
+}
+
+/* Nicer popup card layout */
+.mapboxgl-popup.expansi-popup .popup-card { min-width: 220px; }
+.mapboxgl-popup.expansi-popup .popup-title { font-weight: 700; margin-bottom: 8px; letter-spacing: .2px; font-size: 14px; }
+.mapboxgl-popup.expansi-popup .popup-dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; font-size: 12px; }
+.mapboxgl-popup.expansi-popup .popup-dl .row { display: contents; }
+.mapboxgl-popup.expansi-popup dt { color: #e0f2fd; font-weight: 600; }
+.mapboxgl-popup.expansi-popup dd { margin: 0; color: #d2deea; opacity: .9; }
+
+/* Split divider between chat and map */
+.split-divider {
+	width: 2px;
+	background: linear-gradient(to bottom, #c0d9ef1a, #e0f2fd33, #c0d9ef1a);
+	box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 0 24px rgba(0,0,0,0.6);
+}
+
+/* Subtle right shadow for the chat panel edge */
+.border-r {
+	box-shadow: 4px 0 16px -8px #171717 inset;
+}
+
+.sidebar-ripple {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 120% at 18% 28%, rgba(224, 242, 253, 0.45) 0%, rgba(224, 242, 253, 0.1) 55%, transparent 75%),
+    radial-gradient(90% 90% at 70% 65%, rgba(70, 98, 171, 0.35) 0%, transparent 70%);
+  opacity: 0.85;
+  transform-origin: left center;
+  animation: sidebarRipplePulse 0.6s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes sidebarRipplePulse {
+  0% {
+    opacity: 0.9;
+    transform: scaleX(0.82);
+    filter: blur(14px);
+  }
+  45% {
+    opacity: 0.6;
+    transform: scaleX(1.06);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(1);
+    filter: blur(0);
+  }
+}
+
+.sidebar-fish-flight {
+  animation: sidebarFishGlide 1.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes sidebarFishGlide {
+  0% {
+    transform: translate(-45%, 48%) scale(0.8) rotate(-10deg);
+    opacity: 0.0;
+    filter: drop-shadow(0 8px 22px rgba(70, 98, 171, 0.18));
+  }
+  18% {
+    opacity: 0.35;
+    transform: translate(-28%, 32%) scale(0.88) rotate(-6deg);
+  }
+  46% {
+    opacity: 0.65;
+    transform: translate(-6%, 8%) scale(0.97) rotate(-1deg);
+  }
+  100% {
+    opacity: 0.62;
+    transform: translate(12%, -10%) scale(1.04) rotate(3deg);
+    filter: drop-shadow(0 14px 28px rgba(70, 98, 171, 0.22));
+  }
+}
+
+/* Keyframes for toast/panel entrance */
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.anim-fade-in-down { animation: fadeInDown 220ms ease-out; }
+
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.anim-slide-up { animation: slideUp 260ms ease-out; }
+
+/* Slide down from top for top-attached toast */
+@keyframes slideFromTop {
+  0% { opacity: 0; transform: translate(-50%, -100%); }
+  100% { opacity: 1; transform: translate(-50%, 0); }
+}
+.anim-slide-from-top { animation: slideFromTop 260ms ease-out; }
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.landing-loader {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: #000000;
+}
+
+.landing-loader__row {
+  position: absolute;
+  left: -25%;
+  display: flex;
+  gap: 32px;
+  animation: landingFishSwim 3s linear infinite;
+  opacity: 0.85;
+}
+
+.landing-loader__fish {
+  width: 120px;
+  height: 120px;
+  background-image: url('/fish-landing.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 0 14px rgba(70, 98, 171, 0.35));
+}
+
+@keyframes landingFishSwim {
+  0% {
+    transform: translateX(0) scale(0.95);
+    opacity: 0.1;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(125%) scale(1.05);
+    opacity: 0.15;
+  }
+}
+
+.landing-loader__progress {
+  position: absolute;
+  bottom: 7%;
+  left: 12%;
+  right: 12%;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  box-shadow: 0 0 18px rgba(70, 98, 171, 0.35);
+}
+
+.landing-loader__progress-track {
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+}
+
+.landing-loader__progress-bar {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(198, 218, 236, 0.25) 0%, rgba(224, 242, 253, 0.85) 50%, rgba(198, 218, 236, 0.25) 100%);
+  box-shadow: inset 0 0 12px rgba(224, 242, 253, 0.45);
+  opacity: 0;
+  width: 0%;
+  animation: landingProgressFill 3s ease-in-out infinite;
+}
+
+@keyframes landingProgressFill {
+  0% {
+    opacity: 0;
+    width: 0%;
+  }
+  18% {
+    opacity: 0.85;
+    width: 40%;
+  }
+  38% {
+    opacity: 1;
+    width: 70%;
+  }
+  62% {
+    opacity: 0.9;
+    width: 100%;
+  }
+  82% {
+    opacity: 0.6;
+    width: 100%;
+  }
+  100% {
+    opacity: 0;
+    width: 0%;
+  }
+}
+
+@keyframes anchorHandleReturn {
+  0% {
+    transform: translate(var(--handle-offscreen-x, -96px), calc(var(--handle-y, 50%) - 50%));
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.25;
+  }
+  100% {
+    transform: translate(var(--handle-target-x, 16px), calc(var(--handle-y, 50%) - 50%));
+    opacity: 1;
+  }
+}
+
+.sidebar {
+  position: fixed;
+  top: 0; 
+  left: 0; 
+  z-index: 1100; 
+}

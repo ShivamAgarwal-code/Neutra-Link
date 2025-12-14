@@ -1,0 +1,43 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import Sidebar from "../components/Sidebar";
+import LandingLoader from "../components/LandingLoader";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "Neutra Link",
+  description: "Sustainable fishing supply chain platform with blockchain protection",
+  icons: {
+    icon: '/OverSEAlogo.png',
+    shortcut: '/OverSEAlogo.png',
+    apple: '/OverSEAlogo.png',
+  }
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#171717] text-[#FFFFFF]`}
+      >
+        <LandingLoader />
+        <div className="sidebar"><Sidebar/></div>
+        <main className="main">{children}</main>
+      </body>
+    </html>
+  );
+}
